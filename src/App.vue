@@ -26,6 +26,45 @@
       </div>
     </nav>
     <router-view></router-view>
+    <div class="form-group">
+        <label for="name">Car name</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          class="form-control"
+          v-model.trim="name"
+        >
+    </div>
+    <div class="form-group">
+        <label for="year">Car year</label>
+        <input
+          type="text"
+          name="year"
+          id="year"
+          class="form-control"
+          v-model.number="year"
+        >
+    </div>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      @click="createCar"
+      >Send</button>
+      <button
+      class="btn btn-primary"
+      type="submit"
+      @click="loadCars"
+      >Load cars</button>
+      <br>
+      <ul class="list-group">
+        <li class="list-group-item" v-for="car of cars" :key="car.id">
+          {{ car.name }} - {{ car.year }}
+        </li>
+      </ul>
+    <br>
+    <hr>
+    <br>
     <h2>Form input:</h2>
     <form action="" @submit.prevent="onSubmit">
       <div class="form-group">
@@ -87,10 +126,46 @@ export default {
     return {
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      name: '',
+      year: 2018,
+      cars: [],
+      resource: null
     }
   },
   methods: {
+    createCar(){
+      // this.$http.post('http://localhost:3000/cars', {
+      //   name: this.name,
+      //   year: this.year
+      // }).then(response => {
+      //   return response.json();
+      // }).then(newCar => {
+      //   console.log(newCar);
+      // });
+      const car = {
+        name: this.name,
+        year: this.year
+      };
+      this.resource.save({}, car);
+    },
+    loadCars(){
+      // this.$http.get('http://localhost:3000/cars')
+      // .then(response => {
+      //   return response.json();
+      // }).then(cars => {
+      //   this.cars = {
+      //     ...cars
+      //   }
+      // });
+      this.resource.get().then(response => {
+        return response.json();
+      }).then(cars => {
+        this.cars = {
+          ...cars
+        }
+      });
+    },
     onSubmit(){
       console.log('Email: ', this.email);
       console.log('Password: ', this.password);
@@ -111,6 +186,9 @@ export default {
     confirmPassword:{
       sameAs: sameAs('password')
     }
+  },
+  created(){
+    this.resource = this.$resource('cars');
   }
 }
 </script>

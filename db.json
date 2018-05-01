@@ -1,7 +1,34 @@
 {
   "cars": [
     {
-      "name": "Ford"
+      "name": "BMW",
+      "year": 2018,
+      "id": 1
+    },
+    {
+      "name": "Mazda",
+      "year": 2011,
+      "id": 2
+    },
+    {
+      "name": "Serg",
+      "year": 2018,
+      "id": 3
+    },
+    {
+      "name": "SuslikEst",
+      "year": 2018,
+      "id": 4
+    },
+    {
+      "name": "User",
+      "year": 2010,
+      "id": 5
+    },
+    {
+      "name": "How",
+      "year": 2018,
+      "id": 6
     }
   ]
 }

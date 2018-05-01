@@ -11,6 +11,12 @@ Vue.use(VueRouter);
 import Vuelidate from 'vuelidate';
 Vue.use(Vuelidate);
 
+import VueResource from 'vue-resource';
+Vue.use(VueResource);
+
+Vue.http.options.root = 'http://localhost:3000/';
+
+
 import colorDerective from './color';
 
 export const eventEmitter = new Vue();
