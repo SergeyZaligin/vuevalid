@@ -1,5 +1,31 @@
 <template>
   <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <div class="collapse navbar-collapse">
+        <div class="navbar-nav">
+          <router-link
+            tag="li"
+            class="nav-item"
+            active-class="active"
+            :to="'/'"
+            exact
+          >
+            <a class="nav-link">Home</a>
+          </router-link>
+          <router-link
+            tag="li"
+            class="nav-item"
+            active-class="active"
+            :to="'/cars'"
+            exact
+          >
+            <a class="nav-link">Cars</a>
+          </router-link>
+        </div>
+      </div>
+    </nav>
+    <router-view></router-view>
     <h2>Form input:</h2>
     <form action="" @submit.prevent="onSubmit">
       <div class="form-group">
